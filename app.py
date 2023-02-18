@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '2001'
-app.config['MYSQL_DB'] = 'multidisease'
+app.config['MYSQL_DB'] = 'sys'
 
 mysql = MySQL(app)
 
@@ -32,7 +32,8 @@ def predict(values, dic):
 
 @app.route('/')
 def main():
-    return render_template('diabetes.html')
+        return render_template('signin.html')
+
 
 @app.route("/diabetes", methods=['GET', 'POST'])
 def diabetesPage():
@@ -123,32 +124,39 @@ def predictCancer():
         return render_template('output.html', data=pred)
 
 
-def register():
+@app.route('/register',methods=['POST','GET'])
+def registerpage():
     cur = mysql.connection.cursor()
     if request.method=='POST':
-        datau=request.form['username']
-        datap=request.form['password']
-        cur.execute('INSERT INTO login VALUES(%s,%s)',(datau,datap))
+        datau=request.form['name']
+        datae= request.form['email']
+        dataph=request.form['phone']
+        datap=request.form['pass']
+
+        cur.execute('INSERT INTO login VALUES(%s,%s,%s,%s)',(datau,datae,dataph,datap))
         mysql.connection.commit()
         cur.close()
-        return redirect('/register')
-    return render_template('register.html')
+        return redirect('/diabetes')
+    return render_template('signup.html')
 
 @app.route('/login',methods=['POST','GET'])
 def login():
     cur = mysql.connection.cursor()
     if request.method=='POST':
-        datau=request.form['username']
-        datap=request.form['password']
-        cur.execute('SELECT * FROM login WHERE username=%s AND password=%s',(datau,datap))
+        datau=request.form['your_name']
+        datap=request.form['your_pass']
+        cur.execute('SELECT * FROM login WHERE username=%s AND pass=%s',(datau,datap))
         mysql.connection.commit()
         s=cur.fetchall()
         cur.close()
         if len(s)==0:
-            return render_template('login.html')
+            return render_template('signin.html')
         else:
-            return render_template('form.html')
-    return render_template('login.html')
+            return render_template('diabetes.html')
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+

@@ -41,7 +41,7 @@
 			 padding: 0;
 			 }
 			 body{
-					background-image: url('static/diabetes.jpg');
+					background-image: url('static/diabetes1.jpg');
 				background-position: center;
 					background-size:1950px;
 					font-family:'Times New Roman', Times, serif;
@@ -60,6 +60,9 @@
 					   padding: 10px 0px 10px 0px;
 					   text-align: center;
 					   border-radius: 15px 15px 0px 0px;
+					   
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; 
 				  }
 		  .main{
 				 background-color: rgb(0,0,0,0.5);
@@ -160,11 +163,16 @@
 				   box-shadow: 0 0 #cecece;
 				   top: 6px;
 				   }
+
 			input::-webkit-outer-spin-button,
 			input::-webkit-inner-spin-button {
   				-webkit-appearance: none;
   				margin: 0;
 			}
+			.regform::-webkit-scrollbar {
+  display: none;
+}
+
 		   </style>
 	   </head>
 	   <body>
@@ -179,22 +187,22 @@
 			
 	   
 			 <h2 class="name">Pregnancies</h2>
-			 <input class="optio" name="Pregnancies" placeholder="--Enter Value" type="number"> <br>
+			 <input class="optio" name="Pregnancies" placeholder="No.of Pregnancies" type="number"> <br>
 	   
 			 <h2 class="name">Glucose</h2>
-			 <input class="optio" name="Glucose" placeholder="--Enter Value" type="number"> <br>
+			 <input class="optio" name="Glucose" placeholder="(mg/dL) eg.80" type="number"> <br>
 		  
 			 <h2 class="name">BloodPressure</h2>
-			 <input class="optio" name="BloodPressure" placeholder="--Enter Value" type="number"> <br>
+			 <input class="optio" name="BloodPressure" placeholder="(mmHg) eg.80" type="number"> <br>
 		  
 			 <h2 class="name"> BMI</h2>
-			 <input class="optio" name="BMI" placeholder="--Enter BMI" type="number" step="any"  > <br>
+			 <input class="optio" name="BMI" placeholder="(kg/m^2)" type="number" step="any"  > <br>
 	   
 			 <h2 class="name">Pedigree</h2>
-			 <input class="optio" name="DiabetesPedigreeFunction" placeholder="--Enter Value"type="number" step="any" > <br>
+			 <input class="optio" name="DiabetesPedigreeFunction" placeholder="eg.0.52" type="number" step="any" > <br>
 	   
 			 <h2 class="name">Age</h2>
-			 <input class="optio" name="Age" placeholder="--Enter Value" type="number"> <br>
+			 <input class="optio" name="Age" placeholder="nter age" type="number"> <br>
 	   
 			 <center> <button type="submit">Predict</button>
 			 </center>
